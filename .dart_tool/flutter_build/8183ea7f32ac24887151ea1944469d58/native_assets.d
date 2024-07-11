@@ -1,0 +1,1 @@
+ C:\\Users\\jghos\\Documents\\GitHub\\coding_minds_template\\.dart_tool\\flutter_build\\8183ea7f32ac24887151ea1944469d58\\native_assets.yaml: 

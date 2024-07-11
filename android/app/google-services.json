@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "1021853751707",
-    "project_id": "cmtemplate",
-    "storage_bucket": "cmtemplate.appspot.com"
+    "project_number": "300152250651",
+    "project_id": "counseling-app-e18d8",
+    "storage_bucket": "counseling-app-e18d8.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1021853751707:android:5ab725d31b34d17880693e",
+        "mobilesdk_app_id": "1:300152250651:android:3854f460ba0db192d4b3be",
         "android_client_info": {
           "package_name": "cm.codingmindstemplate"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAGAbaHK_9hbArhGLKZn2w4flm108O-vgU"
+          "current_key": "AIzaSyDx_awyiXR18mS1oBc3tS9lpUthD2MF5KA"
         }
       ],
       "services": {
