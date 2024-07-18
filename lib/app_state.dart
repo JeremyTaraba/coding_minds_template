@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'flutter_flow/request_manager.dart';
 import '/backend/backend.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'flutter_flow/flutter_flow_util.dart';
 
 class FFAppState extends ChangeNotifier {
   static FFAppState _instance = FFAppState._internal();
@@ -36,6 +34,5 @@ class FFAppState extends ChangeNotifier {
         requestFn: requestFn,
       );
   void clearUserDocQueryCache() => _userDocQueryManager.clear();
-  void clearUserDocQueryCacheKey(String? uniqueKey) =>
-      _userDocQueryManager.clearRequest(uniqueKey);
+  void clearUserDocQueryCacheKey(String? uniqueKey) => _userDocQueryManager.clearRequest(uniqueKey);
 }
