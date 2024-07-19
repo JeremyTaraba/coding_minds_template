@@ -36,14 +36,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primary,
+          backgroundColor: Colors.deepPurple,
           automaticallyImplyLeading: false,
           title: AuthUserStreamWidget(
             builder: (context) => Text(
@@ -65,7 +63,29 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
-            children: [],
+            children: [
+              Center(
+                child: Text(
+                  "Todays Date:",
+                  style: TextStyle(fontSize: 56),
+                ),
+              ),
+              Center(
+                child: Text(
+                  DateTime.now().month.toString() + "/" + DateTime.now().day.toString(),
+                  style: TextStyle(fontSize: 56),
+                ),
+              ),
+              Row(
+                children: [
+                  Container(
+                    height: 150,
+                    width: 150,
+                    color: Colors.yellow[700],
+                  ),
+                ],
+              )
+            ],
           ),
         ),
       ),
