@@ -39,9 +39,7 @@ class _ChatNavWidgetState extends State<ChatNavWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -67,7 +65,7 @@ class _ChatNavWidgetState extends State<ChatNavWidget> {
           ),
         ),
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primary,
+          backgroundColor: Colors.red,
           automaticallyImplyLeading: false,
           title: Text(
             'Chats',
@@ -126,8 +124,7 @@ class _ChatNavWidgetState extends State<ChatNavWidget> {
                               size: 90.0,
                             ),
                             title: 'No Chats',
-                            body:
-                                'You don\'t have any chats created, start a chat by tapping the button in the top right. ',
+                            body: 'You don\'t have any chats created, start a chat by tapping the button in the top right. ',
                           ),
                         ),
                       );
@@ -137,11 +134,9 @@ class _ChatNavWidgetState extends State<ChatNavWidget> {
                       scrollDirection: Axis.vertical,
                       itemCount: listViewChatsRecordList.length,
                       itemBuilder: (context, listViewIndex) {
-                        final listViewChatsRecord =
-                            listViewChatsRecordList[listViewIndex];
+                        final listViewChatsRecord = listViewChatsRecordList[listViewIndex];
                         return Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 1.0, 0.0, 0.0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
                             focusColor: Colors.transparent,
@@ -170,13 +165,11 @@ class _ChatNavWidgetState extends State<ChatNavWidget> {
                               child: Container(
                                 width: double.infinity,
                                 decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
+                                  color: FlutterFlowTheme.of(context).secondaryBackground,
                                   boxShadow: [
                                     BoxShadow(
                                       blurRadius: 0.0,
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
+                                      color: FlutterFlowTheme.of(context).alternate,
                                       offset: Offset(
                                         0.0,
                                         1.0,
@@ -189,20 +182,12 @@ class _ChatNavWidgetState extends State<ChatNavWidget> {
                                   builder: (context) {
                                     if (listViewChatsRecord.users.length <= 2) {
                                       return Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 12.0, 12.0, 12.0),
+                                        padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 12.0, 12.0),
                                         child: FutureBuilder<UsersRecord>(
                                           future: FFAppState().userDocQuery(
-                                            uniqueQueryKey: listViewChatsRecord
-                                                .reference.id,
-                                            requestFn: () =>
-                                                UsersRecord.getDocumentOnce(
-                                                    listViewChatsRecord.users
-                                                        .where((e) =>
-                                                            e !=
-                                                            currentUserReference)
-                                                        .toList()
-                                                        .first),
+                                            uniqueQueryKey: listViewChatsRecord.reference.id,
+                                            requestFn: () => UsersRecord.getDocumentOnce(
+                                                listViewChatsRecord.users.where((e) => e != currentUserReference).toList().first),
                                           ),
                                           builder: (context, snapshot) {
                                             // Customize what your widget looks like when it's loading.
@@ -211,35 +196,25 @@ class _ChatNavWidgetState extends State<ChatNavWidget> {
                                                 child: SizedBox(
                                                   width: 50.0,
                                                   height: 50.0,
-                                                  child:
-                                                      CircularProgressIndicator(
-                                                    valueColor:
-                                                        AlwaysStoppedAnimation<
-                                                            Color>(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
+                                                  child: CircularProgressIndicator(
+                                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                                      FlutterFlowTheme.of(context).primary,
                                                     ),
                                                   ),
                                                 ),
                                               );
                                             }
-                                            final rowUsersRecord =
-                                                snapshot.data!;
+                                            final rowUsersRecord = snapshot.data!;
                                             return Row(
                                               mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
+                                              crossAxisAlignment: CrossAxisAlignment.center,
                                               children: [
                                                 Align(
-                                                  alignment:
-                                                      AlignmentDirectional(
-                                                          -1.0, -1.0),
+                                                  alignment: AlignmentDirectional(-1.0, -1.0),
                                                   child: Container(
                                                     width: 50.0,
                                                     height: 50.0,
-                                                    clipBehavior:
-                                                        Clip.antiAlias,
+                                                    clipBehavior: Clip.antiAlias,
                                                     decoration: BoxDecoration(
                                                       shape: BoxShape.circle,
                                                     ),
@@ -249,10 +224,7 @@ class _ChatNavWidgetState extends State<ChatNavWidget> {
                                                         'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/teams/GzvajSxrHvi1zwJQsfLk/assets/tjm1k7ywi5dr/@3xlogoMark_outlineOnWhite.png',
                                                       ),
                                                       fit: BoxFit.cover,
-                                                      errorBuilder: (context,
-                                                              error,
-                                                              stackTrace) =>
-                                                          Image.asset(
+                                                      errorBuilder: (context, error, stackTrace) => Image.asset(
                                                         'assets/images/error_image.png',
                                                         fit: BoxFit.cover,
                                                       ),
@@ -261,76 +233,40 @@ class _ChatNavWidgetState extends State<ChatNavWidget> {
                                                 ),
                                                 Expanded(
                                                   child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(8.0, 0.0,
-                                                                0.0, 0.0),
+                                                    padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
                                                     child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
+                                                      mainAxisSize: MainAxisSize.max,
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
                                                       children: [
                                                         Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
+                                                          mainAxisSize: MainAxisSize.max,
                                                           children: [
                                                             Expanded(
                                                               child: Text(
-                                                                valueOrDefault<
-                                                                    String>(
-                                                                  rowUsersRecord
-                                                                      .displayName,
+                                                                valueOrDefault<String>(
+                                                                  rowUsersRecord.displayName,
                                                                   'Ghost User',
                                                                 ),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Poppins',
-                                                                      fontSize:
-                                                                          16.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .normal,
+                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                      fontFamily: 'Poppins',
+                                                                      fontSize: 16.0,
+                                                                      letterSpacing: 0.0,
+                                                                      fontWeight: FontWeight.normal,
                                                                     ),
                                                               ),
                                                             ),
-                                                            if (!listViewChatsRecord
-                                                                .lastMessageSeenBy
-                                                                .contains(
-                                                                    currentUserReference))
+                                                            if (!listViewChatsRecord.lastMessageSeenBy.contains(currentUserReference))
                                                               Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            8.0,
-                                                                            0.0),
-                                                                child:
-                                                                    Container(
+                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 8.0, 0.0),
+                                                                child: Container(
                                                                   width: 12.0,
                                                                   height: 12.0,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .accent1,
-                                                                    shape: BoxShape
-                                                                        .circle,
-                                                                    border:
-                                                                        Border
-                                                                            .all(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primary,
-                                                                      width:
-                                                                          2.0,
+                                                                  decoration: BoxDecoration(
+                                                                    color: FlutterFlowTheme.of(context).accent1,
+                                                                    shape: BoxShape.circle,
+                                                                    border: Border.all(
+                                                                      color: FlutterFlowTheme.of(context).primary,
+                                                                      width: 2.0,
                                                                     ),
                                                                   ),
                                                                 ),
@@ -338,59 +274,33 @@ class _ChatNavWidgetState extends State<ChatNavWidget> {
                                                           ],
                                                         ),
                                                         Text(
-                                                          listViewChatsRecord
-                                                              .lastMessage,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Poppins',
+                                                          listViewChatsRecord.lastMessage,
+                                                          style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                fontFamily: 'Poppins',
                                                                 fontSize: 15.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w300,
+                                                                letterSpacing: 0.0,
+                                                                fontWeight: FontWeight.w300,
                                                               ),
                                                         ),
                                                         Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
+                                                          mainAxisSize: MainAxisSize.max,
+                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                           children: [
                                                             Text(
-                                                              dateTimeFormat(
-                                                                  'relative',
-                                                                  listViewChatsRecord
-                                                                      .lastMessageTime!),
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Poppins',
-                                                                    fontSize:
-                                                                        15.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w300,
+                                                              dateTimeFormat('relative', listViewChatsRecord.lastMessageTime!),
+                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                    fontFamily: 'Poppins',
+                                                                    fontSize: 15.0,
+                                                                    letterSpacing: 0.0,
+                                                                    fontWeight: FontWeight.w300,
                                                                   ),
                                                             ),
                                                             Icon(
-                                                              Icons
-                                                                  .chevron_right_rounded,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryText,
+                                                              Icons.chevron_right_rounded,
+                                                              color: FlutterFlowTheme.of(context).secondaryText,
                                                               size: 24.0,
                                                             ),
-                                                          ].divide(SizedBox(
-                                                              width: 16.0)),
+                                                          ].divide(SizedBox(width: 16.0)),
                                                         ),
                                                       ],
                                                     ),
@@ -403,20 +313,12 @@ class _ChatNavWidgetState extends State<ChatNavWidget> {
                                       );
                                     } else {
                                       return Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 12.0, 12.0, 12.0),
+                                        padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 12.0, 12.0),
                                         child: FutureBuilder<UsersRecord>(
                                           future: FFAppState().userDocQuery(
-                                            uniqueQueryKey: listViewChatsRecord
-                                                .reference.id,
-                                            requestFn: () =>
-                                                UsersRecord.getDocumentOnce(
-                                                    listViewChatsRecord.users
-                                                        .where((e) =>
-                                                            e !=
-                                                            currentUserReference)
-                                                        .toList()
-                                                        .first),
+                                            uniqueQueryKey: listViewChatsRecord.reference.id,
+                                            requestFn: () => UsersRecord.getDocumentOnce(
+                                                listViewChatsRecord.users.where((e) => e != currentUserReference).toList().first),
                                           ),
                                           builder: (context, snapshot) {
                                             // Customize what your widget looks like when it's loading.
@@ -425,147 +327,81 @@ class _ChatNavWidgetState extends State<ChatNavWidget> {
                                                 child: SizedBox(
                                                   width: 50.0,
                                                   height: 50.0,
-                                                  child:
-                                                      CircularProgressIndicator(
-                                                    valueColor:
-                                                        AlwaysStoppedAnimation<
-                                                            Color>(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
+                                                  child: CircularProgressIndicator(
+                                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                                      FlutterFlowTheme.of(context).primary,
                                                     ),
                                                   ),
                                                 ),
                                               );
                                             }
-                                            final rowUsersRecord =
-                                                snapshot.data!;
+                                            final rowUsersRecord = snapshot.data!;
                                             return Row(
                                               mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 0.0, 8.0),
+                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                                                   child: Container(
                                                     width: 44.0,
                                                     height: 54.0,
                                                     child: Stack(
                                                       children: [
                                                         Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      10.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      10.0),
-                                                          child: FutureBuilder<
-                                                              UsersRecord>(
-                                                            future: UsersRecord
-                                                                .getDocumentOnce(
-                                                                    listViewChatsRecord
-                                                                        .users
-                                                                        .where((e) =>
-                                                                            e !=
-                                                                            currentUserReference)
-                                                                        .toList()
-                                                                        .last),
-                                                            builder: (context,
-                                                                snapshot) {
+                                                          padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 10.0),
+                                                          child: FutureBuilder<UsersRecord>(
+                                                            future: UsersRecord.getDocumentOnce(
+                                                                listViewChatsRecord.users.where((e) => e != currentUserReference).toList().last),
+                                                            builder: (context, snapshot) {
                                                               // Customize what your widget looks like when it's loading.
-                                                              if (!snapshot
-                                                                  .hasData) {
+                                                              if (!snapshot.hasData) {
                                                                 return Center(
-                                                                  child:
-                                                                      SizedBox(
+                                                                  child: SizedBox(
                                                                     width: 50.0,
-                                                                    height:
-                                                                        50.0,
-                                                                    child:
-                                                                        CircularProgressIndicator(
-                                                                      valueColor:
-                                                                          AlwaysStoppedAnimation<
-                                                                              Color>(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .primary,
+                                                                    height: 50.0,
+                                                                    child: CircularProgressIndicator(
+                                                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                                                        FlutterFlowTheme.of(context).primary,
                                                                       ),
                                                                     ),
                                                                   ),
                                                                 );
                                                               }
-                                                              final circleImageUsersRecord =
-                                                                  snapshot
-                                                                      .data!;
+                                                              final circleImageUsersRecord = snapshot.data!;
                                                               return Container(
                                                                 width: 44.0,
                                                                 height: 44.0,
-                                                                clipBehavior: Clip
-                                                                    .antiAlias,
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  shape: BoxShape
-                                                                      .circle,
+                                                                clipBehavior: Clip.antiAlias,
+                                                                decoration: BoxDecoration(
+                                                                  shape: BoxShape.circle,
                                                                 ),
-                                                                child:
-                                                                    CachedNetworkImage(
-                                                                  fadeInDuration:
-                                                                      Duration(
-                                                                          milliseconds:
-                                                                              200),
-                                                                  fadeOutDuration:
-                                                                      Duration(
-                                                                          milliseconds:
-                                                                              200),
-                                                                  imageUrl:
-                                                                      valueOrDefault<
-                                                                          String>(
-                                                                    rowUsersRecord
-                                                                        .photoUrl,
+                                                                child: CachedNetworkImage(
+                                                                  fadeInDuration: Duration(milliseconds: 200),
+                                                                  fadeOutDuration: Duration(milliseconds: 200),
+                                                                  imageUrl: valueOrDefault<String>(
+                                                                    rowUsersRecord.photoUrl,
                                                                     'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/test-flow-at3mts/assets/jozbfglfd548/flutterflow_future%402x.jpg',
                                                                   ),
-                                                                  fit: BoxFit
-                                                                      .cover,
+                                                                  fit: BoxFit.cover,
                                                                 ),
                                                               );
                                                             },
                                                           ),
                                                         ),
                                                         Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      10.0,
-                                                                      10.0,
-                                                                      0.0),
+                                                          padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 10.0, 0.0),
                                                           child: Container(
                                                             width: 44.0,
                                                             height: 44.0,
-                                                            clipBehavior:
-                                                                Clip.antiAlias,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              shape: BoxShape
-                                                                  .circle,
+                                                            clipBehavior: Clip.antiAlias,
+                                                            decoration: BoxDecoration(
+                                                              shape: BoxShape.circle,
                                                             ),
-                                                            child:
-                                                                CachedNetworkImage(
-                                                              fadeInDuration:
-                                                                  Duration(
-                                                                      milliseconds:
-                                                                          200),
-                                                              fadeOutDuration:
-                                                                  Duration(
-                                                                      milliseconds:
-                                                                          200),
-                                                              imageUrl:
-                                                                  valueOrDefault<
-                                                                      String>(
-                                                                rowUsersRecord
-                                                                    .photoUrl,
+                                                            child: CachedNetworkImage(
+                                                              fadeInDuration: Duration(milliseconds: 200),
+                                                              fadeOutDuration: Duration(milliseconds: 200),
+                                                              imageUrl: valueOrDefault<String>(
+                                                                rowUsersRecord.photoUrl,
                                                                 'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/test-flow-at3mts/assets/jozbfglfd548/flutterflow_future%402x.jpg',
                                                               ),
                                                               fit: BoxFit.cover,
@@ -578,71 +414,37 @@ class _ChatNavWidgetState extends State<ChatNavWidget> {
                                                 ),
                                                 Expanded(
                                                   child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(8.0, 0.0,
-                                                                0.0, 0.0),
+                                                    padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
                                                     child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
+                                                      mainAxisSize: MainAxisSize.max,
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
                                                       children: [
                                                         Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
+                                                          mainAxisSize: MainAxisSize.max,
                                                           children: [
                                                             Expanded(
                                                               child: Text(
                                                                 'Group Chat',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Poppins',
-                                                                      fontSize:
-                                                                          16.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .normal,
+                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                      fontFamily: 'Poppins',
+                                                                      fontSize: 16.0,
+                                                                      letterSpacing: 0.0,
+                                                                      fontWeight: FontWeight.normal,
                                                                     ),
                                                               ),
                                                             ),
-                                                            if (!listViewChatsRecord
-                                                                .lastMessageSeenBy
-                                                                .contains(
-                                                                    currentUserReference))
+                                                            if (!listViewChatsRecord.lastMessageSeenBy.contains(currentUserReference))
                                                               Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            8.0,
-                                                                            0.0),
-                                                                child:
-                                                                    Container(
+                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 8.0, 0.0),
+                                                                child: Container(
                                                                   width: 12.0,
                                                                   height: 12.0,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .accent1,
-                                                                    shape: BoxShape
-                                                                        .circle,
-                                                                    border:
-                                                                        Border
-                                                                            .all(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primary,
-                                                                      width:
-                                                                          2.0,
+                                                                  decoration: BoxDecoration(
+                                                                    color: FlutterFlowTheme.of(context).accent1,
+                                                                    shape: BoxShape.circle,
+                                                                    border: Border.all(
+                                                                      color: FlutterFlowTheme.of(context).primary,
+                                                                      width: 2.0,
                                                                     ),
                                                                   ),
                                                                 ),
@@ -650,67 +452,39 @@ class _ChatNavWidgetState extends State<ChatNavWidget> {
                                                           ],
                                                         ),
                                                         Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            listViewChatsRecord
-                                                                .lastMessage,
+                                                          valueOrDefault<String>(
+                                                            listViewChatsRecord.lastMessage,
                                                             'No messages yet.',
                                                           ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Poppins',
+                                                          style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                fontFamily: 'Poppins',
                                                                 fontSize: 15.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w300,
+                                                                letterSpacing: 0.0,
+                                                                fontWeight: FontWeight.w300,
                                                               ),
                                                         ),
                                                         Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
+                                                          mainAxisSize: MainAxisSize.max,
+                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                           children: [
                                                             Text(
-                                                              valueOrDefault<
-                                                                  String>(
-                                                                dateTimeFormat(
-                                                                    'relative',
-                                                                    listViewChatsRecord
-                                                                        .lastMessageTime),
+                                                              valueOrDefault<String>(
+                                                                dateTimeFormat('relative', listViewChatsRecord.lastMessageTime),
                                                                 '--',
                                                               ),
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Poppins',
-                                                                    fontSize:
-                                                                        15.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w300,
+                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                    fontFamily: 'Poppins',
+                                                                    fontSize: 15.0,
+                                                                    letterSpacing: 0.0,
+                                                                    fontWeight: FontWeight.w300,
                                                                   ),
                                                             ),
                                                             Icon(
-                                                              Icons
-                                                                  .chevron_right_rounded,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryText,
+                                                              Icons.chevron_right_rounded,
+                                                              color: FlutterFlowTheme.of(context).secondaryText,
                                                               size: 24.0,
                                                             ),
-                                                          ].divide(SizedBox(
-                                                              width: 16.0)),
+                                                          ].divide(SizedBox(width: 16.0)),
                                                         ),
                                                       ],
                                                     ),

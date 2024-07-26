@@ -45,8 +45,7 @@ class _ChatWidgetState extends State<ChatWidget> {
           await widget.chatRef!.reference.update({
             ...mapToFirestore(
               {
-                'last_message_seen_by':
-                    FieldValue.arrayUnion([currentUserReference]),
+                'last_message_seen_by': FieldValue.arrayUnion([currentUserReference]),
               },
             ),
           });
@@ -65,289 +64,258 @@ class _ChatWidgetState extends State<ChatWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primary,
-          iconTheme: IconThemeData(
-              color: FlutterFlowTheme.of(context).primaryBackground),
-          automaticallyImplyLeading: true,
-          title: FutureBuilder<UsersRecord>(
-            future: UsersRecord.getDocumentOnce(widget.chatRef!.users
-                .where((e) => e != currentUserReference)
-                .toList()
-                .first),
-            builder: (context, snapshot) {
-              // Customize what your widget looks like when it's loading.
-              if (!snapshot.hasData) {
-                return Center(
-                  child: SizedBox(
-                    width: 50.0,
-                    height: 50.0,
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        FlutterFlowTheme.of(context).primary,
+      onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
+      child: Container(
+        color: Colors.red,
+        child: Scaffold(
+          key: scaffoldKey,
+          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+          appBar: AppBar(
+            backgroundColor: FlutterFlowTheme.of(context).primary,
+            iconTheme: IconThemeData(color: FlutterFlowTheme.of(context).primaryBackground),
+            automaticallyImplyLeading: true,
+            title: FutureBuilder<UsersRecord>(
+              future: UsersRecord.getDocumentOnce(widget.chatRef!.users.where((e) => e != currentUserReference).toList().first),
+              builder: (context, snapshot) {
+                // Customize what your widget looks like when it's loading.
+                if (!snapshot.hasData) {
+                  return Center(
+                    child: SizedBox(
+                      width: 50.0,
+                      height: 50.0,
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          FlutterFlowTheme.of(context).primary,
+                        ),
                       ),
                     ),
-                  ),
-                );
-              }
-              final conditionalBuilderUsersRecord = snapshot.data!;
-              return Builder(
-                builder: (context) {
-                  if (widget.chatRef!.users.length <= 2) {
-                    return Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.all(2.0),
-                          child: Container(
-                            width: 44.0,
-                            height: 44.0,
-                            clipBehavior: Clip.antiAlias,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                            ),
-                            child: Image.network(
-                              conditionalBuilderUsersRecord.photoUrl,
-                              fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) =>
-                                  Image.asset(
-                                'assets/images/error_image.png',
+                  );
+                }
+                final conditionalBuilderUsersRecord = snapshot.data!;
+                return Builder(
+                  builder: (context) {
+                    if (widget.chatRef!.users.length <= 2) {
+                      return Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(2.0),
+                            child: Container(
+                              width: 44.0,
+                              height: 44.0,
+                              clipBehavior: Clip.antiAlias,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                              ),
+                              child: Image.network(
+                                conditionalBuilderUsersRecord.photoUrl,
                                 fit: BoxFit.cover,
+                                errorBuilder: (context, error, stackTrace) => Image.asset(
+                                  'assets/images/error_image.png',
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        Expanded(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                valueOrDefault<String>(
-                                  conditionalBuilderUsersRecord.displayName,
-                                  'Ghost User',
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Poppins',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                      fontSize: 16.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w300,
-                                    ),
-                              ),
-                              Text(
-                                valueOrDefault<String>(
-                                  conditionalBuilderUsersRecord.email,
-                                  'casper@ghost.io',
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Poppins',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                      fontSize: 14.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w300,
-                                    ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    );
-                  } else {
-                    return Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 4.0, 12.0, 4.0),
-                          child: Container(
-                            width: 54.0,
-                            height: 44.0,
-                            child: Stack(
+                          Expanded(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 0.0, 0.0, 10.0),
-                                  child: FutureBuilder<UsersRecord>(
-                                    future: UsersRecord.getDocumentOnce(widget
-                                        .chatRef!.users
-                                        .where((e) => e != currentUserReference)
-                                        .toList()
-                                        .last),
-                                    builder: (context, snapshot) {
-                                      // Customize what your widget looks like when it's loading.
-                                      if (!snapshot.hasData) {
-                                        return Center(
-                                          child: SizedBox(
-                                            width: 50.0,
-                                            height: 50.0,
-                                            child: CircularProgressIndicator(
-                                              valueColor:
-                                                  AlwaysStoppedAnimation<Color>(
-                                                FlutterFlowTheme.of(context)
-                                                    .primary,
-                                              ),
-                                            ),
-                                          ),
-                                        );
-                                      }
-                                      final circleImageUsersRecord =
-                                          snapshot.data!;
-                                      return Container(
-                                        width: 44.0,
-                                        height: 44.0,
-                                        clipBehavior: Clip.antiAlias,
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: CachedNetworkImage(
-                                          fadeInDuration:
-                                              Duration(milliseconds: 200),
-                                          fadeOutDuration:
-                                              Duration(milliseconds: 200),
-                                          imageUrl: valueOrDefault<String>(
-                                            conditionalBuilderUsersRecord
-                                                .photoUrl,
-                                            'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/test-flow-at3mts/assets/jozbfglfd548/flutterflow_future%402x.jpg',
-                                          ),
-                                          fit: BoxFit.cover,
-                                        ),
-                                      );
-                                    },
+                                Text(
+                                  valueOrDefault<String>(
+                                    conditionalBuilderUsersRecord.displayName,
+                                    'Ghost User',
                                   ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 10.0, 10.0, 0.0),
-                                  child: Container(
-                                    width: 44.0,
-                                    height: 44.0,
-                                    clipBehavior: Clip.antiAlias,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: CachedNetworkImage(
-                                      fadeInDuration:
-                                          Duration(milliseconds: 200),
-                                      fadeOutDuration:
-                                          Duration(milliseconds: 200),
-                                      imageUrl: valueOrDefault<String>(
-                                        conditionalBuilderUsersRecord.photoUrl,
-                                        'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/test-flow-at3mts/assets/jozbfglfd548/flutterflow_future%402x.jpg',
+                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                        fontFamily: 'Poppins',
+                                        color: FlutterFlowTheme.of(context).primaryBackground,
+                                        fontSize: 16.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w300,
                                       ),
-                                      fit: BoxFit.cover,
-                                    ),
+                                ),
+                                Text(
+                                  valueOrDefault<String>(
+                                    conditionalBuilderUsersRecord.email,
+                                    'casper@ghost.io',
                                   ),
+                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                        fontFamily: 'Poppins',
+                                        color: FlutterFlowTheme.of(context).primaryBackground,
+                                        fontSize: 14.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w300,
+                                      ),
                                 ),
                               ],
                             ),
                           ),
-                        ),
-                        Expanded(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Group Chat',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Poppins',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                      fontSize: 16.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                              ),
-                              Text(
-                                '${valueOrDefault<String>(
-                                  widget.chatRef?.users?.length.toString(),
-                                  '2',
-                                )} members',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Poppins',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                      fontSize: 16.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w300,
-                                    ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    );
-                  }
-                },
-              );
-            },
-          ),
-          actions: [
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 16.0, 8.0),
-              child: FlutterFlowIconButton(
-                borderRadius: 12.0,
-                borderWidth: 2.0,
-                buttonSize: 40.0,
-                fillColor: FlutterFlowTheme.of(context).primaryBackground,
-                icon: Icon(
-                  Icons.more_vert,
-                  color: FlutterFlowTheme.of(context).primaryText,
-                  size: 24.0,
-                ),
-                onPressed: () async {
-                  await showModalBottomSheet(
-                    isScrollControlled: true,
-                    backgroundColor: FlutterFlowTheme.of(context).accent4,
-                    barrierColor: Color(0x00FFFFFF),
-                    context: context,
-                    builder: (context) {
-                      return GestureDetector(
-                        onTap: () => _model.unfocusNode.canRequestFocus
-                            ? FocusScope.of(context)
-                                .requestFocus(_model.unfocusNode)
-                            : FocusScope.of(context).unfocus(),
-                        child: Padding(
-                          padding: MediaQuery.viewInsetsOf(context),
-                          child: ChatDetailsOverlayWidget(
-                            chatRef: widget.chatRef!,
-                          ),
-                        ),
+                        ],
                       );
-                    },
-                  ).then((value) => safeSetState(() {}));
-                },
-              ),
+                    } else {
+                      return Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 12.0, 4.0),
+                            child: Container(
+                              width: 54.0,
+                              height: 44.0,
+                              child: Stack(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 10.0),
+                                    child: FutureBuilder<UsersRecord>(
+                                      future:
+                                          UsersRecord.getDocumentOnce(widget.chatRef!.users.where((e) => e != currentUserReference).toList().last),
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 50.0,
+                                              height: 50.0,
+                                              child: CircularProgressIndicator(
+                                                valueColor: AlwaysStoppedAnimation<Color>(
+                                                  FlutterFlowTheme.of(context).primary,
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                        final circleImageUsersRecord = snapshot.data!;
+                                        return Container(
+                                          width: 44.0,
+                                          height: 44.0,
+                                          clipBehavior: Clip.antiAlias,
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: CachedNetworkImage(
+                                            fadeInDuration: Duration(milliseconds: 200),
+                                            fadeOutDuration: Duration(milliseconds: 200),
+                                            imageUrl: valueOrDefault<String>(
+                                              conditionalBuilderUsersRecord.photoUrl,
+                                              'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/test-flow-at3mts/assets/jozbfglfd548/flutterflow_future%402x.jpg',
+                                            ),
+                                            fit: BoxFit.cover,
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 10.0, 0.0),
+                                    child: Container(
+                                      width: 44.0,
+                                      height: 44.0,
+                                      clipBehavior: Clip.antiAlias,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: CachedNetworkImage(
+                                        fadeInDuration: Duration(milliseconds: 200),
+                                        fadeOutDuration: Duration(milliseconds: 200),
+                                        imageUrl: valueOrDefault<String>(
+                                          conditionalBuilderUsersRecord.photoUrl,
+                                          'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/test-flow-at3mts/assets/jozbfglfd548/flutterflow_future%402x.jpg',
+                                        ),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Group Chat',
+                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                        fontFamily: 'Poppins',
+                                        color: FlutterFlowTheme.of(context).primaryBackground,
+                                        fontSize: 16.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                ),
+                                Text(
+                                  '${valueOrDefault<String>(
+                                    widget.chatRef?.users?.length.toString(),
+                                    '2',
+                                  )} members',
+                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                        fontFamily: 'Poppins',
+                                        color: FlutterFlowTheme.of(context).primaryBackground,
+                                        fontSize: 16.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w300,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      );
+                    }
+                  },
+                );
+              },
             ),
-          ],
-          centerTitle: false,
-          elevation: 0.0,
-        ),
-        body: SafeArea(
-          top: true,
-          child: wrapWithModel(
-            model: _model.chatThreadComponentModel,
-            updateCallback: () => setState(() {}),
-            updateOnChange: true,
-            child: ChatThreadComponentWidget(
-              chatRef: widget.chatRef,
+            actions: [
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 16.0, 8.0),
+                child: FlutterFlowIconButton(
+                  borderRadius: 12.0,
+                  borderWidth: 2.0,
+                  buttonSize: 40.0,
+                  fillColor: FlutterFlowTheme.of(context).primaryBackground,
+                  icon: Icon(
+                    Icons.more_vert,
+                    color: FlutterFlowTheme.of(context).primaryText,
+                    size: 24.0,
+                  ),
+                  onPressed: () async {
+                    await showModalBottomSheet(
+                      isScrollControlled: true,
+                      backgroundColor: FlutterFlowTheme.of(context).accent4,
+                      barrierColor: Color(0x00FFFFFF),
+                      context: context,
+                      builder: (context) {
+                        return GestureDetector(
+                          onTap: () => _model.unfocusNode.canRequestFocus
+                              ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+                              : FocusScope.of(context).unfocus(),
+                          child: Padding(
+                            padding: MediaQuery.viewInsetsOf(context),
+                            child: ChatDetailsOverlayWidget(
+                              chatRef: widget.chatRef!,
+                            ),
+                          ),
+                        );
+                      },
+                    ).then((value) => safeSetState(() {}));
+                  },
+                ),
+              ),
+            ],
+            centerTitle: false,
+            elevation: 0.0,
+          ),
+          body: SafeArea(
+            top: true,
+            child: wrapWithModel(
+              model: _model.chatThreadComponentModel,
+              updateCallback: () => setState(() {}),
+              updateOnChange: true,
+              child: ChatThreadComponentWidget(
+                chatRef: widget.chatRef,
+              ),
             ),
           ),
         ),

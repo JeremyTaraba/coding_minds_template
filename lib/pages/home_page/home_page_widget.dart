@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -76,15 +78,130 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   style: TextStyle(fontSize: 56),
                 ),
               ),
-              Row(
+              Column(
                 children: [
-                  Container(
-                    height: 150,
-                    width: 150,
-                    color: Colors.yellow[700],
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Column(
+                          children: [
+                            Text(
+                              "Schools",
+                              style: TextStyle(fontSize: 30),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                print("Schools");
+                              },
+                              child: Container(
+                                height: 150,
+                                width: 150,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  color: Colors.yellow[700],
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: ImageIcon(AssetImage("assets/icons/graduate.png")),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Column(
+                          children: [
+                            Text(
+                              "Competitions",
+                              style: TextStyle(fontSize: 30),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                print("Competitions");
+                              },
+                              child: Container(
+                                height: 150,
+                                width: 150,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  color: Colors.yellow[700],
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(24.0),
+                                  child: ImageIcon(AssetImage("assets/icons/award.png")),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Column(
+                          children: [
+                            Text(
+                              "Articles",
+                              style: TextStyle(fontSize: 30),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                print("Articles");
+                              },
+                              child: Container(
+                                height: 150,
+                                width: 150,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  color: Colors.yellow[700],
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: ImageIcon(AssetImage("assets/icons/content-writing.png")),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Column(
+                          children: [
+                            Text(
+                              "Calendar",
+                              style: TextStyle(fontSize: 30),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                print("Calendar");
+                              },
+                              child: Container(
+                                height: 150,
+                                width: 150,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  color: Colors.yellow[700],
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(24.0),
+                                  child: ImageIcon(AssetImage("assets/icons/calendar.png")),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  )
                 ],
-              )
+              ),
             ],
           ),
         ),
