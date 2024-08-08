@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:dart_openai/dart_openai.dart';
+import "./api_keys.dart";
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -9,9 +10,8 @@ class ChatScreen extends StatefulWidget {
   State<ChatScreen> createState() => _ChatScreenState();
 }
 
-const OPENAI_API_KEY = "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";
 Future<void> test() async {
-  OpenAI.apiKey = OPENAI_API_KEY;
+  OpenAI.apiKey = CHATGPT_APIKEY;
   OpenAI.requestsTimeOut = Duration(seconds: 10);
 }
 

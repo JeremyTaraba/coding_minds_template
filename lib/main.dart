@@ -19,6 +19,7 @@ import 'index.dart';
 import "./pages/new_chat/chat_screen.dart";
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import "./pages/new_chat/test_chat_screen.dart";
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -131,7 +132,7 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'HomePage': HomePageWidget(),
-      'ChatNav': ChatScreen(),
+      'ChatNav': chatPage(),
       'Settings': SettingsWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
