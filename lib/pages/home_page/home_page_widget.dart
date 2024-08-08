@@ -1,5 +1,7 @@
+import 'package:coding_minds_template/index.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../../backend/schema/chats_record.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -35,6 +37,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     super.dispose();
   }
 
+  late List<ChatsRecord> listViewChatsRecordList = [];
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -93,6 +96,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             GestureDetector(
                               onTap: () {
                                 print("Schools");
+                                Navigator.of(context)
+                                    .push(MaterialPageRoute(builder: (context) => ChatWidget(chatRef: listViewChatsRecordList.first)));
                               },
                               child: Container(
                                 height: 150,

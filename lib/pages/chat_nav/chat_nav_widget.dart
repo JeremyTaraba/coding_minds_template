@@ -43,29 +43,8 @@ class _ChatNavWidgetState extends State<ChatNavWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-            context.pushNamed(
-              'chat_2_InviteUsers',
-              extra: <String, dynamic>{
-                kTransitionInfoKey: TransitionInfo(
-                  hasTransition: true,
-                  transitionType: PageTransitionType.bottomToTop,
-                  duration: Duration(milliseconds: 270),
-                ),
-              },
-            );
-          },
-          backgroundColor: FlutterFlowTheme.of(context).primary,
-          elevation: 8.0,
-          child: Icon(
-            Icons.add,
-            color: FlutterFlowTheme.of(context).info,
-            size: 24.0,
-          ),
-        ),
         appBar: AppBar(
-          backgroundColor: Colors.red,
+          backgroundColor: Colors.purple,
           automaticallyImplyLeading: false,
           title: Text(
             'Chats',

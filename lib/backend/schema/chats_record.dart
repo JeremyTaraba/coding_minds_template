@@ -10,9 +10,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 
 class ChatsRecord extends FirestoreRecord {
   ChatsRecord._(
-    DocumentReference reference,
-    Map<String, dynamic> data,
-  ) : super(reference, data) {
+    super.reference,
+    super.data,
+  ) {
     _initializeFields();
   }
 
@@ -48,8 +48,7 @@ class ChatsRecord extends FirestoreRecord {
 
   // "last_message_seen_by" field.
   List<DocumentReference>? _lastMessageSeenBy;
-  List<DocumentReference> get lastMessageSeenBy =>
-      _lastMessageSeenBy ?? const [];
+  List<DocumentReference> get lastMessageSeenBy => _lastMessageSeenBy ?? const [];
   bool hasLastMessageSeenBy() => _lastMessageSeenBy != null;
 
   // "group_chat_id" field.
@@ -63,20 +62,27 @@ class ChatsRecord extends FirestoreRecord {
     _userB = snapshotData['user_b'] as DocumentReference?;
     _lastMessage = snapshotData['last_message'] as String?;
     _lastMessageTime = snapshotData['last_message_time'] as DateTime?;
-    _lastMessageSentBy =
-        snapshotData['last_message_sent_by'] as DocumentReference?;
+    _lastMessageSentBy = snapshotData['last_message_sent_by'] as DocumentReference?;
     _lastMessageSeenBy = getDataList(snapshotData['last_message_seen_by']);
     _groupChatId = castToType<int>(snapshotData['group_chat_id']);
   }
 
-  static CollectionReference get collection =>
-      FirebaseFirestore.instance.collection('chats');
+  ChatsRecord(super.reference, super.snapshotData) {
+    _users = getDataList(snapshotData['users']);
+    _userA = snapshotData['user_a'] as DocumentReference?;
+    _userB = snapshotData['user_b'] as DocumentReference?;
+    _lastMessage = snapshotData['last_message'] as String?;
+    _lastMessageTime = snapshotData['last_message_time'] as DateTime?;
+    _lastMessageSentBy = snapshotData['last_message_sent_by'] as DocumentReference?;
+    _lastMessageSeenBy = getDataList(snapshotData['last_message_seen_by']);
+    _groupChatId = castToType<int>(snapshotData['group_chat_id']);
+  }
 
-  static Stream<ChatsRecord> getDocument(DocumentReference ref) =>
-      ref.snapshots().map((s) => ChatsRecord.fromSnapshot(s));
+  static CollectionReference get collection => FirebaseFirestore.instance.collection('chats');
 
-  static Future<ChatsRecord> getDocumentOnce(DocumentReference ref) =>
-      ref.get().then((s) => ChatsRecord.fromSnapshot(s));
+  static Stream<ChatsRecord> getDocument(DocumentReference ref) => ref.snapshots().map((s) => ChatsRecord.fromSnapshot(s));
+
+  static Future<ChatsRecord> getDocumentOnce(DocumentReference ref) => ref.get().then((s) => ChatsRecord.fromSnapshot(s));
 
   static ChatsRecord fromSnapshot(DocumentSnapshot snapshot) => ChatsRecord._(
         snapshot.reference,
@@ -90,16 +96,13 @@ class ChatsRecord extends FirestoreRecord {
       ChatsRecord._(reference, mapFromFirestore(data));
 
   @override
-  String toString() =>
-      'ChatsRecord(reference: ${reference.path}, data: $snapshotData)';
+  String toString() => 'ChatsRecord(reference: ${reference.path}, data: $snapshotData)';
 
   @override
   int get hashCode => reference.path.hashCode;
 
   @override
-  bool operator ==(other) =>
-      other is ChatsRecord &&
-      reference.path.hashCode == other.reference.path.hashCode;
+  bool operator ==(other) => other is ChatsRecord && reference.path.hashCode == other.reference.path.hashCode;
 }
 
 Map<String, dynamic> createChatsRecordData({
@@ -141,16 +144,8 @@ class ChatsRecordDocumentEquality implements Equality<ChatsRecord> {
   }
 
   @override
-  int hash(ChatsRecord? e) => const ListEquality().hash([
-        e?.users,
-        e?.userA,
-        e?.userB,
-        e?.lastMessage,
-        e?.lastMessageTime,
-        e?.lastMessageSentBy,
-        e?.lastMessageSeenBy,
-        e?.groupChatId
-      ]);
+  int hash(ChatsRecord? e) => const ListEquality()
+      .hash([e?.users, e?.userA, e?.userB, e?.lastMessage, e?.lastMessageTime, e?.lastMessageSentBy, e?.lastMessageSeenBy, e?.groupChatId]);
 
   @override
   bool isValidKey(Object? o) => o is ChatsRecord;

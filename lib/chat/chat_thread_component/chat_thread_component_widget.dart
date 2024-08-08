@@ -27,8 +27,7 @@ class ChatThreadComponentWidget extends StatefulWidget {
   final ChatsRecord? chatRef;
 
   @override
-  State<ChatThreadComponentWidget> createState() =>
-      _ChatThreadComponentWidgetState();
+  State<ChatThreadComponentWidget> createState() => _ChatThreadComponentWidgetState();
 }
 
 class _ChatThreadComponentWidgetState extends State<ChatThreadComponentWidget> {
@@ -79,20 +78,16 @@ class _ChatThreadComponentWidgetState extends State<ChatThreadComponentWidget> {
                     .orderBy('timestamp', descending: true),
                 limit: 200,
               )..listen((snapshot) {
-                  List<ChatMessagesRecord> listViewChatMessagesRecordList =
-                      snapshot;
+                  List<ChatMessagesRecord> listViewChatMessagesRecordList = snapshot;
                   if (_model.listViewPreviousSnapshot != null &&
                       !const ListEquality(ChatMessagesRecordDocumentEquality())
-                          .equals(listViewChatMessagesRecordList,
-                              _model.listViewPreviousSnapshot)) {
+                          .equals(listViewChatMessagesRecordList, _model.listViewPreviousSnapshot)) {
                     () async {
-                      if (!widget.chatRef!.lastMessageSeenBy
-                          .contains(currentUserReference)) {
+                      if (!widget.chatRef!.lastMessageSeenBy.contains(currentUserReference)) {
                         await widget.chatRef!.reference.update({
                           ...mapToFirestore(
                             {
-                              'last_message_seen_by':
-                                  FieldValue.arrayUnion([currentUserReference]),
+                              'last_message_seen_by': FieldValue.arrayUnion([currentUserReference]),
                             },
                           ),
                         });
@@ -121,8 +116,7 @@ class _ChatThreadComponentWidgetState extends State<ChatThreadComponentWidget> {
                     ),
                   );
                 }
-                List<ChatMessagesRecord> listViewChatMessagesRecordList =
-                    snapshot.data!;
+                List<ChatMessagesRecord> listViewChatMessagesRecordList = snapshot.data!;
                 if (listViewChatMessagesRecordList.isEmpty) {
                   return EmptyStateSimpleWidget(
                     icon: Icon(
@@ -145,8 +139,7 @@ class _ChatThreadComponentWidgetState extends State<ChatThreadComponentWidget> {
                   scrollDirection: Axis.vertical,
                   itemCount: listViewChatMessagesRecordList.length,
                   itemBuilder: (context, listViewIndex) {
-                    final listViewChatMessagesRecord =
-                        listViewChatMessagesRecordList[listViewIndex];
+                    final listViewChatMessagesRecord = listViewChatMessagesRecordList[listViewIndex];
                     return Container(
                       decoration: BoxDecoration(),
                       child: wrapWithModel(
@@ -172,7 +165,7 @@ class _ChatThreadComponentWidgetState extends State<ChatThreadComponentWidget> {
           Container(
             width: double.infinity,
             decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
+              color: Colors.orange,
               boxShadow: [
                 BoxShadow(
                   blurRadius: 3.0,
@@ -187,15 +180,13 @@ class _ChatThreadComponentWidgetState extends State<ChatThreadComponentWidget> {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                if (_model.uploadedFileUrl != null &&
-                    _model.uploadedFileUrl != '')
+                if (_model.uploadedFileUrl != null && _model.uploadedFileUrl != '')
                   Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 12.0, 0.0, 0.0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                           child: SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Row(
@@ -207,18 +198,15 @@ class _ChatThreadComponentWidgetState extends State<ChatThreadComponentWidget> {
                                   imageBuilder: (path) => ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
                                     child: CachedNetworkImage(
-                                      fadeInDuration:
-                                          Duration(milliseconds: 500),
-                                      fadeOutDuration:
-                                          Duration(milliseconds: 500),
+                                      fadeInDuration: Duration(milliseconds: 500),
+                                      fadeOutDuration: Duration(milliseconds: 500),
                                       imageUrl: path,
                                       width: 120.0,
                                       height: 100.0,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
-                                  videoPlayerBuilder: (path) =>
-                                      FlutterFlowVideoPlayer(
+                                  videoPlayerBuilder: (path) => FlutterFlowVideoPlayer(
                                     path: path,
                                     width: 300.0,
                                     autoPlay: false,
@@ -234,8 +222,7 @@ class _ChatThreadComponentWidgetState extends State<ChatThreadComponentWidget> {
                                     borderRadius: 20.0,
                                     borderWidth: 2.0,
                                     buttonSize: 40.0,
-                                    fillColor:
-                                        FlutterFlowTheme.of(context).error,
+                                    fillColor: FlutterFlowTheme.of(context).error,
                                     icon: Icon(
                                       Icons.delete,
                                       color: Colors.white,
@@ -244,18 +231,13 @@ class _ChatThreadComponentWidgetState extends State<ChatThreadComponentWidget> {
                                     onPressed: () async {
                                       setState(() {
                                         _model.isDataUploading = false;
-                                        _model.uploadedLocalFile =
-                                            FFUploadedFile(
-                                                bytes: Uint8List.fromList([]));
+                                        _model.uploadedLocalFile = FFUploadedFile(bytes: Uint8List.fromList([]));
                                         _model.uploadedFileUrl = '';
                                       });
                                     },
                                   ),
                                 ),
-                              ]
-                                  .divide(SizedBox(width: 8.0))
-                                  .addToStart(SizedBox(width: 16.0))
-                                  .addToEnd(SizedBox(width: 16.0)),
+                              ].divide(SizedBox(width: 8.0)).addToStart(SizedBox(width: 16.0)).addToEnd(SizedBox(width: 16.0)),
                             ),
                           ),
                         ),
@@ -283,20 +265,15 @@ class _ChatThreadComponentWidgetState extends State<ChatThreadComponentWidget> {
                             size: 24.0,
                           ),
                           onPressed: () async {
-                            final selectedMedia =
-                                await selectMediaWithSourceBottomSheet(
+                            final selectedMedia = await selectMediaWithSourceBottomSheet(
                               context: context,
                               allowPhoto: true,
                               allowVideo: true,
-                              backgroundColor: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              textColor:
-                                  FlutterFlowTheme.of(context).primaryText,
+                              backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+                              textColor: FlutterFlowTheme.of(context).primaryText,
                               pickerFontFamily: 'Outfit',
                             );
-                            if (selectedMedia != null &&
-                                selectedMedia.every((m) => validateFileFormat(
-                                    m.storagePath, context))) {
+                            if (selectedMedia != null && selectedMedia.every((m) => validateFileFormat(m.storagePath, context))) {
                               setState(() => _model.isDataUploading = true);
                               var selectedUploadedFiles = <FFUploadedFile>[];
 
@@ -319,39 +296,31 @@ class _ChatThreadComponentWidgetState extends State<ChatThreadComponentWidget> {
 
                                 downloadUrls = (await Future.wait(
                                   selectedMedia.map(
-                                    (m) async => await uploadData(
-                                        m.storagePath, m.bytes),
+                                    (m) async => await uploadData(m.storagePath, m.bytes),
                                   ),
                                 ))
                                     .where((u) => u != null)
                                     .map((u) => u!)
                                     .toList();
                               } finally {
-                                ScaffoldMessenger.of(context)
-                                    .hideCurrentSnackBar();
+                                ScaffoldMessenger.of(context).hideCurrentSnackBar();
                                 _model.isDataUploading = false;
                               }
-                              if (selectedUploadedFiles.length ==
-                                      selectedMedia.length &&
-                                  downloadUrls.length == selectedMedia.length) {
+                              if (selectedUploadedFiles.length == selectedMedia.length && downloadUrls.length == selectedMedia.length) {
                                 setState(() {
-                                  _model.uploadedLocalFile =
-                                      selectedUploadedFiles.first;
+                                  _model.uploadedLocalFile = selectedUploadedFiles.first;
                                   _model.uploadedFileUrl = downloadUrls.first;
                                 });
                                 showUploadMessage(context, 'Success!');
                               } else {
                                 setState(() {});
-                                showUploadMessage(
-                                    context, 'Failed to upload data');
+                                showUploadMessage(context, 'Failed to upload data');
                                 return;
                               }
                             }
 
-                            if (_model.uploadedFileUrl != null &&
-                                _model.uploadedFileUrl != '') {
-                              _model
-                                  .addToImagesUploaded(_model.uploadedFileUrl);
+                            if (_model.uploadedFileUrl != null && _model.uploadedFileUrl != '') {
+                              _model.addToImagesUploaded(_model.uploadedFileUrl);
                               setState(() {});
                             }
                           },
@@ -360,64 +329,53 @@ class _ChatThreadComponentWidgetState extends State<ChatThreadComponentWidget> {
                           child: Stack(
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    8.0, 0.0, 0.0, 0.0),
+                                padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
                                 child: Container(
                                   width: double.infinity,
                                   child: TextFormField(
                                     controller: _model.textController,
                                     focusNode: _model.textFieldFocusNode,
                                     onFieldSubmitted: (_) async {
-                                      if (_model.formKey.currentState == null ||
-                                          !_model.formKey.currentState!
-                                              .validate()) {
+                                      if (_model.formKey.currentState == null || !_model.formKey.currentState!.validate()) {
                                         return;
                                       }
                                       // newChatMessage
 
-                                      var chatMessagesRecordReference =
-                                          ChatMessagesRecord.collection.doc();
-                                      await chatMessagesRecordReference
-                                          .set(createChatMessagesRecordData(
+                                      var chatMessagesRecordReference = ChatMessagesRecord.collection.doc();
+                                      await chatMessagesRecordReference.set(createChatMessagesRecordData(
                                         user: currentUserReference,
                                         chat: widget.chatRef?.reference,
                                         text: _model.textController.text,
                                         timestamp: getCurrentTimestamp,
                                         image: _model.uploadedFileUrl,
                                       ));
-                                      _model.newChatMessage = ChatMessagesRecord
-                                          .getDocumentFromData(
-                                              createChatMessagesRecordData(
-                                                user: currentUserReference,
-                                                chat: widget.chatRef?.reference,
-                                                text:
-                                                    _model.textController.text,
-                                                timestamp: getCurrentTimestamp,
-                                                image: _model.uploadedFileUrl,
-                                              ),
-                                              chatMessagesRecordReference);
+                                      _model.newChatMessage = ChatMessagesRecord.getDocumentFromData(
+                                          createChatMessagesRecordData(
+                                            user: currentUserReference,
+                                            chat: widget.chatRef?.reference,
+                                            text: _model.textController.text,
+                                            timestamp: getCurrentTimestamp,
+                                            image: _model.uploadedFileUrl,
+                                          ),
+                                          chatMessagesRecordReference);
                                       // clearUsers
                                       _model.lastSeenBy = [];
                                       // In order to add a single user reference to a list of user references we are adding our current user reference to a page state.
                                       //
                                       // We will then set the value of the user reference list from this page state.
                                       // addMyUserToList
-                                      _model.addToLastSeenBy(
-                                          currentUserReference!);
+                                      _model.addToLastSeenBy(currentUserReference!);
                                       // updateChatDocument
 
                                       await widget.chatRef!.reference.update({
                                         ...createChatsRecordData(
                                           lastMessageTime: getCurrentTimestamp,
-                                          lastMessageSentBy:
-                                              currentUserReference,
-                                          lastMessage:
-                                              _model.textController.text,
+                                          lastMessageSentBy: currentUserReference,
+                                          lastMessage: _model.textController.text,
                                         ),
                                         ...mapToFirestore(
                                           {
-                                            'last_message_seen_by':
-                                                _model.lastSeenBy,
+                                            'last_message_seen_by': _model.lastSeenBy,
                                           },
                                         ),
                                       });
@@ -428,9 +386,7 @@ class _ChatThreadComponentWidgetState extends State<ChatThreadComponentWidget> {
                                       });
                                       setState(() {
                                         _model.isDataUploading = false;
-                                        _model.uploadedLocalFile =
-                                            FFUploadedFile(
-                                                bytes: Uint8List.fromList([]));
+                                        _model.uploadedLocalFile = FFUploadedFile(bytes: Uint8List.fromList([]));
                                         _model.uploadedFileUrl = '';
                                       });
 
@@ -440,121 +396,90 @@ class _ChatThreadComponentWidgetState extends State<ChatThreadComponentWidget> {
                                       setState(() {});
                                     },
                                     autofocus: true,
-                                    textCapitalization:
-                                        TextCapitalization.sentences,
+                                    textCapitalization: TextCapitalization.sentences,
                                     textInputAction: TextInputAction.send,
                                     obscureText: false,
                                     decoration: InputDecoration(
-                                      labelStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
+                                      labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
                                             fontFamily: 'Readex Pro',
                                             letterSpacing: 0.0,
                                           ),
-                                      hintText: 'Start typing here...',
-                                      hintStyle: FlutterFlowTheme.of(context)
-                                          .labelSmall
-                                          .override(
+                                      hintText: 'Start typing here',
+                                      hintStyle: FlutterFlowTheme.of(context).labelSmall.override(
                                             fontFamily: 'Readex Pro',
                                             letterSpacing: 0.0,
                                           ),
-                                      errorStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
+                                      errorStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                                             fontFamily: 'Readex Pro',
-                                            color: FlutterFlowTheme.of(context)
-                                                .error,
+                                            color: FlutterFlowTheme.of(context).error,
                                             fontSize: 12.0,
                                             letterSpacing: 0.0,
                                           ),
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .alternate,
+                                          color: FlutterFlowTheme.of(context).alternate,
                                           width: 1.0,
                                         ),
-                                        borderRadius:
-                                            BorderRadius.circular(24.0),
+                                        borderRadius: BorderRadius.circular(24.0),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
+                                          color: FlutterFlowTheme.of(context).primary,
                                           width: 1.0,
                                         ),
-                                        borderRadius:
-                                            BorderRadius.circular(24.0),
+                                        borderRadius: BorderRadius.circular(24.0),
                                       ),
                                       errorBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
+                                          color: FlutterFlowTheme.of(context).error,
                                           width: 1.0,
                                         ),
-                                        borderRadius:
-                                            BorderRadius.circular(24.0),
+                                        borderRadius: BorderRadius.circular(24.0),
                                       ),
                                       focusedErrorBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
+                                          color: FlutterFlowTheme.of(context).error,
                                           width: 1.0,
                                         ),
-                                        borderRadius:
-                                            BorderRadius.circular(24.0),
+                                        borderRadius: BorderRadius.circular(24.0),
                                       ),
-                                      contentPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              16.0, 16.0, 56.0, 16.0),
+                                      contentPadding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 56.0, 16.0),
                                     ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
+                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
                                           fontFamily: 'Readex Pro',
                                           letterSpacing: 0.0,
                                         ),
                                     maxLines: 12,
                                     minLines: 1,
-                                    cursorColor:
-                                        FlutterFlowTheme.of(context).primary,
-                                    validator: _model.textControllerValidator
-                                        .asValidator(context),
+                                    cursorColor: FlutterFlowTheme.of(context).primary,
+                                    validator: _model.textControllerValidator.asValidator(context),
                                   ),
                                 ),
                               ),
                               Align(
                                 alignment: AlignmentDirectional(1.0, 0.0),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 4.0, 6.0, 4.0),
+                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 6.0, 4.0),
                                   child: FlutterFlowIconButton(
-                                    borderColor: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
+                                    borderColor: FlutterFlowTheme.of(context).secondaryBackground,
                                     borderRadius: 20.0,
                                     borderWidth: 1.0,
                                     buttonSize: 40.0,
-                                    fillColor:
-                                        FlutterFlowTheme.of(context).accent1,
+                                    fillColor: Colors.orange, //FlutterFlowTheme.of(context).accent1,
                                     icon: Icon(
                                       Icons.send_rounded,
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
+                                      color: FlutterFlowTheme.of(context).primary,
                                       size: 20.0,
                                     ),
                                     onPressed: () async {
-                                      final firestoreBatch =
-                                          FirebaseFirestore.instance.batch();
+                                      final firestoreBatch = FirebaseFirestore.instance.batch();
                                       try {
-                                        if (_model.formKey.currentState ==
-                                                null ||
-                                            !_model.formKey.currentState!
-                                                .validate()) {
+                                        if (_model.formKey.currentState == null || !_model.formKey.currentState!.validate()) {
                                           return;
                                         }
                                         // newChatMessage
 
-                                        var chatMessagesRecordReference =
-                                            ChatMessagesRecord.collection.doc();
+                                        var chatMessagesRecordReference = ChatMessagesRecord.collection.doc();
                                         firestoreBatch.set(
                                             chatMessagesRecordReference,
                                             createChatMessagesRecordData(
@@ -564,43 +489,33 @@ class _ChatThreadComponentWidgetState extends State<ChatThreadComponentWidget> {
                                               timestamp: getCurrentTimestamp,
                                               image: _model.uploadedFileUrl,
                                             ));
-                                        _model.newChat = ChatMessagesRecord
-                                            .getDocumentFromData(
-                                                createChatMessagesRecordData(
-                                                  user: currentUserReference,
-                                                  chat:
-                                                      widget.chatRef?.reference,
-                                                  text: _model
-                                                      .textController.text,
-                                                  timestamp:
-                                                      getCurrentTimestamp,
-                                                  image: _model.uploadedFileUrl,
-                                                ),
-                                                chatMessagesRecordReference);
+                                        _model.newChat = ChatMessagesRecord.getDocumentFromData(
+                                            createChatMessagesRecordData(
+                                              user: currentUserReference,
+                                              chat: widget.chatRef?.reference,
+                                              text: _model.textController.text,
+                                              timestamp: getCurrentTimestamp,
+                                              image: _model.uploadedFileUrl,
+                                            ),
+                                            chatMessagesRecordReference);
                                         // clearUsers
                                         _model.lastSeenBy = [];
                                         // In order to add a single user reference to a list of user references we are adding our current user reference to a page state.
                                         //
                                         // We will then set the value of the user reference list from this page state.
                                         // addMyUserToList
-                                        _model.addToLastSeenBy(
-                                            currentUserReference!);
+                                        _model.addToLastSeenBy(currentUserReference!);
                                         // updateChatDocument
 
-                                        firestoreBatch
-                                            .update(widget.chatRef!.reference, {
+                                        firestoreBatch.update(widget.chatRef!.reference, {
                                           ...createChatsRecordData(
-                                            lastMessageTime:
-                                                getCurrentTimestamp,
-                                            lastMessageSentBy:
-                                                currentUserReference,
-                                            lastMessage:
-                                                _model.textController.text,
+                                            lastMessageTime: getCurrentTimestamp,
+                                            lastMessageSentBy: currentUserReference,
+                                            lastMessage: _model.textController.text,
                                           ),
                                           ...mapToFirestore(
                                             {
-                                              'last_message_seen_by':
-                                                  _model.lastSeenBy,
+                                              'last_message_seen_by': _model.lastSeenBy,
                                             },
                                           ),
                                         });
@@ -611,10 +526,7 @@ class _ChatThreadComponentWidgetState extends State<ChatThreadComponentWidget> {
                                         });
                                         setState(() {
                                           _model.isDataUploading = false;
-                                          _model.uploadedLocalFile =
-                                              FFUploadedFile(
-                                                  bytes:
-                                                      Uint8List.fromList([]));
+                                          _model.uploadedLocalFile = FFUploadedFile(bytes: Uint8List.fromList([]));
                                           _model.uploadedFileUrl = '';
                                         });
 

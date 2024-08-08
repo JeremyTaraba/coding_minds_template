@@ -1,3 +1,4 @@
+import 'package:coding_minds_template/chat/chat_thread_component/chat_thread_component_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -8,12 +9,14 @@ import 'auth/firebase_auth/firebase_user_provider.dart';
 import 'auth/firebase_auth/auth_util.dart';
 
 import 'backend/firebase/firebase_config.dart';
+import 'backend/schema/chats_record.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'flutter_flow/nav/nav.dart';
 import 'index.dart';
 
+import "./pages/new_chat/chat_screen.dart";
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
@@ -128,7 +131,7 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'HomePage': HomePageWidget(),
-      'ChatNav': ChatNavWidget(),
+      'ChatNav': ChatScreen(),
       'Settings': SettingsWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
