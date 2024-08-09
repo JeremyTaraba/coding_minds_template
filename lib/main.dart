@@ -1,3 +1,4 @@
+import 'package:coding_minds_template/pages/new_chat/chat_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -128,7 +129,7 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'HomePage': HomePageWidget(),
-      'ChatNav': ChatNavWidget(),
+      'ChatNav': ChatPage(),
       'Settings': SettingsWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);

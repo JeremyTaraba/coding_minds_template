@@ -134,6 +134,18 @@
       "languageVersion": "3.1"
     },
     {
+      "name": "dart_openai",
+      "rootUri": "file:///C:/Users/jghos/AppData/Local/Pub/Cache/hosted/pub.dev/dart_openai-5.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "dash_chat_2",
+      "rootUri": "file:///C:/Users/jghos/AppData/Local/Pub/Cache/hosted/pub.dev/dash_chat_2-0.0.20",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "dbus",
       "rootUri": "file:///C:/Users/jghos/AppData/Local/Pub/Cache/hosted/pub.dev/dbus-0.7.10",
       "packageUri": "lib/",
@@ -144,6 +156,18 @@
       "rootUri": "file:///C:/Users/jghos/AppData/Local/Pub/Cache/hosted/pub.dev/fake_async-1.3.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "fetch_api",
+      "rootUri": "file:///C:/Users/jghos/AppData/Local/Pub/Cache/hosted/pub.dev/fetch_api-1.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
+      "name": "fetch_client",
+      "rootUri": "file:///C:/Users/jghos/AppData/Local/Pub/Cache/hosted/pub.dev/fetch_client-1.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
     },
     {
       "name": "ffi",
@@ -294,6 +318,18 @@
       "rootUri": "file:///C:/src/flutter/flutter/packages/flutter_localizations",
       "packageUri": "lib/",
       "languageVersion": "3.2"
+    },
+    {
+      "name": "flutter_markdown",
+      "rootUri": "file:///C:/Users/jghos/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_markdown-0.6.23",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
+      "name": "flutter_parsed_text",
+      "rootUri": "file:///C:/Users/jghos/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_parsed_text-2.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "flutter_plugin_android_lifecycle",
@@ -510,6 +546,12 @@
       "rootUri": "file:///C:/Users/jghos/AppData/Local/Pub/Cache/hosted/pub.dev/logging-1.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.19"
+    },
+    {
+      "name": "markdown",
+      "rootUri": "file:///C:/Users/jghos/AppData/Local/Pub/Cache/hosted/pub.dev/markdown-7.2.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
     },
     {
       "name": "matcher",
@@ -986,7 +1028,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2024-07-25T23:33:58.789271Z",
+  "generated": "2024-08-09T00:09:37.198102Z",
   "generator": "pub",
   "generatorVersion": "3.3.4"
 }
