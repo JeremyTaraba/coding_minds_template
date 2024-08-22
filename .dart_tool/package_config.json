@@ -231,7 +231,7 @@
     },
     {
       "name": "firebase_core",
-      "rootUri": "file:///C:/Users/jghos/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_core-2.26.0",
+      "rootUri": "file:///C:/Users/jghos/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_core-2.27.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -1028,7 +1028,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2024-08-09T00:09:37.198102Z",
+  "generated": "2024-08-14T00:17:54.080037Z",
   "generator": "pub",
   "generatorVersion": "3.3.4"
 }

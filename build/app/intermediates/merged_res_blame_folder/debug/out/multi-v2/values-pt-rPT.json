@@ -72,24 +72,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\jghos\\.gradle\\caches\\transforms-3\\1e2bc68abfef6e3f853d446363bb8095\\transformed\\jetified-play-services-basement-18.2.0\\res\\values-pt-rPT\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "199",
-                        "endColumns": "140",
-                        "endOffsets": "339"
-                    },
-                    "to": {
-                        "startLines": "44",
-                        "startColumns": "4",
-                        "startOffsets": "4611",
-                        "endColumns": "144",
-                        "endOffsets": "4751"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\jghos\\.gradle\\caches\\transforms-3\\46c4bbab07454277326e22b9a0153995\\transformed\\jetified-play-services-base-18.0.1\\res\\values-pt-rPT\\values.xml",
+                    "source": "C:\\Users\\jghos\\.gradle\\caches\\transforms-3\\a613f6571c3143edab1a783ad1d6c8ce\\transformed\\jetified-play-services-base-18.1.0\\res\\values-pt-rPT\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -103,6 +86,23 @@
                         "startOffsets": "3580,3685,3848,3976,4084,4252,4380,4502,4756,4944,5052,5222,5353,5512,5690,5758,5827",
                         "endColumns": "104,162,127,107,167,127,121,108,187,107,169,130,158,177,67,68,86",
                         "endOffsets": "3680,3843,3971,4079,4247,4375,4497,4606,4939,5047,5217,5348,5507,5685,5753,5822,5909"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\jghos\\.gradle\\caches\\transforms-3\\25f1d23aebdb80ce0279f7bad9014e8e\\transformed\\jetified-play-services-basement-18.3.0\\res\\values-pt-rPT\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "199",
+                        "endColumns": "140",
+                        "endOffsets": "339"
+                    },
+                    "to": {
+                        "startLines": "44",
+                        "startColumns": "4",
+                        "startOffsets": "4611",
+                        "endColumns": "144",
+                        "endOffsets": "4751"
                     }
                 }
             ]
