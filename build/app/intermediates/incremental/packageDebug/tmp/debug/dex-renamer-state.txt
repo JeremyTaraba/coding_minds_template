@@ -1,4 +1,4 @@
-#Thu Aug 22 17:42:35 PDT 2024
+#Thu Aug 29 17:12:52 PDT 2024
 base.0=C\:\\Users\\jghos\\Documents\\GitHub\\coding_minds_template\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Users\\jghos\\Documents\\GitHub\\coding_minds_template\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\0\\classes.dex
 base.2=C\:\\Users\\jghos\\Documents\\GitHub\\coding_minds_template\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
