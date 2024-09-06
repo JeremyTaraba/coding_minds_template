@@ -136,6 +136,7 @@ flutter:
     - assets/rive_animations/
     - assets/pdfs/
     - assets/icons/
+    - assets/
 
   
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -1,3 +1,4 @@
+import 'package:coding_minds_template/pages/schools/schools_page.dart';
 import 'package:flutter/cupertino.dart';
 
 import '/auth/firebase_auth/auth_util.dart';
@@ -92,7 +93,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                print("Schools");
+                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => SchoolsPage()));
                               },
                               child: Container(
                                 height: 150,

@@ -12,7 +12,6 @@ class ChatPage extends StatefulWidget {
   State<ChatPage> createState() => _ChatPageState();
 }
 
-//TODO: Charlie needs to add the SetOption: merge true to his create user and create ai
 // TODO: charlie needs to add the sort messages to get them in order
 
 class _ChatPageState extends State<ChatPage> {
@@ -25,7 +24,8 @@ class _ChatPageState extends State<ChatPage> {
     }
     messages = await readUserMessage();
     messages.addAll(await readAIMessage());
-    // messages.sort((a, b) => a.createdAt.compareTo(b.createdAt));
+
+    messages.sort((b, a) => a.createdAt.compareTo(b.createdAt));
 
     return "done";
   }
@@ -34,7 +34,6 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
@@ -126,6 +125,7 @@ class _ChatPageState extends State<ChatPage> {
       maxTokens: 200,
     );
 
+    await addAIMessage(chatCompletion.choices.first.message.toString());
     setState(() {
       messages.insert(0, ChatMessage(user: chatGPTUser, createdAt: DateTime.now(), text: chatCompletion.choices.first.message.toString()));
       typingUsers.remove(chatGPTUser);
