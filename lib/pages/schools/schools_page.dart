@@ -19,6 +19,8 @@ class _SchoolsPageState extends State<SchoolsPage> {
     schoolsList = data;
     return "done";
   }
+  //TODO: check if charlie added credit card and see if it works. Make sure his api key is updated
+  //TODO: charlie needs to make the card look nice so we can use List View to show them 10 at a time
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,7 @@ class _SchoolsPageState extends State<SchoolsPage> {
                     padding: const EdgeInsets.all(15.0),
                     child: SizedBox(
                       width: MediaQuery.sizeOf(context).width,
-                      height: 150,
+                      height: 120,
                       child: Card(
                         elevation: 10,
                         color: Colors.yellow[100],
@@ -46,7 +48,8 @@ class _SchoolsPageState extends State<SchoolsPage> {
                             ),
                             Text(
                               schoolsList[0]["Name of University"].toString(),
-                              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                              maxLines: 1,
                             ),
                             Text(
                               "Location: ${schoolsList[0]["Location"].toString()}",
@@ -63,7 +66,7 @@ class _SchoolsPageState extends State<SchoolsPage> {
                   ),
                 );
               } else {
-                return CircularProgressIndicator();
+                return Center(child: CircularProgressIndicator());
               }
             }),
       ),

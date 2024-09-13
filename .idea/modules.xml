@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/coding_minds_template.iml" filepath="$PROJECT_DIR$/.idea/coding_minds_template.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aicounselor/aicounselor.iml" filepath="$PROJECT_DIR$/aicounselor/aicounselor.iml" />
     </modules>
   </component>
 </project>
